@@ -16,12 +16,13 @@ export default defineConfig([
     extends: [js.configs.recommended, pluginReact.configs.flat.recommended],
     settings: {
       react: {
-        version: "detect", // auto-detect React version
+        version: "detect",
       },
     },
     rules: {
-      "react/react-in-jsx-scope": "off", // ✅ turn off this outdated rule
-      "react/jsx-uses-react": "off", // ✅ not needed in React 17+
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-uses-react": "off",
+      "react/prop-types": "off",
     },
   },
 ]);
