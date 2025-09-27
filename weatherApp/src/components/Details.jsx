@@ -31,10 +31,7 @@ const Details = ({ weather }) => {
         <div className="temp-img">
           <h2 className="location">{weather.today.location}</h2>
           <p>Tempreature</p>
-          <p>
-            {weather.today.temperature}
-            <span>min:20</span>
-          </p>
+          <h3>{weather.today.temperature}</h3>
         </div>
         <h3 className="days">7-Days forecast</h3>
         <div className="time">
@@ -47,10 +44,13 @@ const Details = ({ weather }) => {
               <div className="day-info">
                 <strong>
                   {new Date(day.time).toLocaleDateString([], {
-                    weekday: "short",
+                    day: "numeric",
                   })}
                 </strong>
-                <span>{new Date(day.time).getDate()}</span>
+                {/* <span>{new Date(weather.forecast.time).getDate()}</span> */}
+                {new Date(day.time).toLocaleDateString([], {
+                  weekday: "short",
+                })}
               </div>
             </div>
           ))}

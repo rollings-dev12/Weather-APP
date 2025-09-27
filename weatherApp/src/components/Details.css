@@ -33,10 +33,11 @@
 }
 
 .weather-details p {
-  font-size: 1.3rem;
+  font-size: 0.9rem;
 }
 .weather-details h2 {
   font-weight: 200;
+  font-size: 1.1rem;
 }
 
 .days {

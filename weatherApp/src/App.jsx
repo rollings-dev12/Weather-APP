@@ -2,11 +2,14 @@ import Mains from "./components/mains";
 import Display from "./components/Display";
 import Details from "./components/Details";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import Clear_icon from "./assets/humidity.png";
-import Cloud_icon from "./assets/drizzle.png";
+import Clear_icon from "./assets/clear.png";
+import Cloud_icon from "./assets/cloud.png";
 import rain_icon from "./assets/rain.png";
+import drizzle_icon from "./assets/drizzle.png";
+import snow_icon from "./assets/snow.png";
+import wind_icon from "./assets/wind.png";
 
 const App = () => {
   const [Start, setStart] = useState(false);
@@ -18,7 +21,10 @@ const App = () => {
     "01d": Clear_icon,
     "01n": Clear_icon,
     "02d": Cloud_icon,
-    "09d": rain_icon,
+    "10d": rain_icon,
+    "13d": snow_icon,
+    "09d": drizzle_icon,
+    "03d": wind_icon,
   };
   const search = async (city) => {
     try {
@@ -38,6 +44,7 @@ const App = () => {
           dailyForecast.push({
             temp: Math.round(item.main.temp),
             icon: allIcons[item.weather[0].icon] || Clear_icon,
+            //
             time: item.dt * 1000,
           });
           seenDays.add(day);
@@ -65,9 +72,18 @@ const App = () => {
       console.error("Error fetching weather:", error);
     }
   };
+  const inputRef = useRef();
   useEffect(() => {
     search("london");
   }, []);
+
+  const handleSearch = () => {
+    if (inputRef.current) {
+      const city = inputRef.current.value;
+      search(city);
+      inputRef.current.value = "";
+    }
+  };
   return (
     <div className="weather-contanier">
       {!Start && (
@@ -75,7 +91,12 @@ const App = () => {
       )}
 
       {Start && !Next && (
-        <Display frontNext={() => setNext(true)} weather={weatherData} />
+        <Display
+          frontNext={() => setNext(true)}
+          weather={weatherData}
+          inputRef={inputRef}
+          onSearch={handleSearch}
+        />
       )}
 
       {Start && Next && (
