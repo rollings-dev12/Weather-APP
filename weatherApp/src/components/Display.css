@@ -11,13 +11,14 @@
   align-items: center;
 }
 .search input {
-  padding: 10px 0;
+  padding: 10px 4px;
   border-radius: 15px;
   border: none;
   outline: none;
   margin-right: 20px;
   background: linear-gradient(to left, #aaa6c0 50%, #fff 100%);
   font-size: 0.9rem;
+  color: #000000c2;
 }
 
 .search input::placeholder {

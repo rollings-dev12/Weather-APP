@@ -2,7 +2,7 @@ import "./Display.css";
 import "./Details.css";
 import { useState } from "react";
 
-const Details = ({ weather }) => {
+const Details = ({ weather, backNext }) => {
   if (!weather) return <p>Loading...</p>;
 
   const [startIndex, setStartIndex] = useState(0);
@@ -96,6 +96,9 @@ const Details = ({ weather }) => {
           <div>
             <h2>{weather.today.lat}</h2>
           </div>
+        </div>
+        <div className="next-btn">
+          <span onClick={backNext}></span>
         </div>
       </div>
     </>

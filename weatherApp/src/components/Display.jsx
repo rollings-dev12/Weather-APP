@@ -53,7 +53,6 @@ const Display = ({ frontNext, weather, inputRef, onSearch }) => {
           </div>
           <div className="next-btn">
             <span onClick={frontNext}></span>
-            <span></span>
           </div>
         </div>
       </div>
